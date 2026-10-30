@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AFRIQUE PLUS BTP | Bâtir l’Afrique de demain</title>
+<meta name="description" content="AFRIQUE PLUS BTP : bâtiment, travaux publics et promotion immobilière à Lomé, Togo. Découvrez nos réalisations et investissez avec nous.">
+<meta name="theme-color" content="#0b2e23">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+<!-- 1. HERO : carrousel vidéo 3D plein écran -->
+<section class="hero" id="hero">
+  <header class="top">
+    <a class="logos" href="#hero" aria-label="AFRIQUE PLUS BTP">
+  <img src="images/2.svg" alt="Afrique Plus BTP">
+  <img src="images/3.svg" alt="Adebissi Dream House">
+</a>
+    <a class="btn ghost" href="#contact">Nous contacter</a>
+  </header>
+  <div class="stage" id="stage"><div id="rail"></div></div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <div class="ctrl">
+    <button id="prev" aria-label="Précédent">‹</button><button id="next" aria-label="Suivant">›</button><button id="snd" aria-label="Activer ou couper le son">🔇</button>
+  </div>
+  <div class="hero-bottom"><div class="row">
+    <h1>Bâtir l’Afrique de demain, du Togo vers le monde</h1>
+    <a class="btn" href="#catalogues">Découvrir nos catalogues</a>
+  </div></div>
+</section>
+
+<!-- LIGNE DE SÉCURITÉ POUR ÉVITER LE DÉBORDEMENT -->
+<div style="clear:both; height: 0; visibility: hidden;"></div>
+
+<!-- SECTION GALERIE TEMPS FORTS -->
+<section class="highlights" id="highlights">
+  
+  <!-- Bandeau du haut (Titre + Flèches) par-dessus les photos -->
+  <div class="highlights-header">
+    <div>
+      <h2>Nos Temps Forts</h2>
+      <p class="lead">Découvrez nos moments de reconnaissance et nos réalisations.</p>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="arr" id="hprev" aria-label="Précédent">‹</button>
+      <button class="arr" id="hnext" aria-label="Suivant">›</button>
+    </div>
+  </div>
+  
+  <!-- Le conteneur du carrousel (Plein écran) -->
+  <div class="h-track" id="htrack">
+    
+    <!-- GROUPE 1 (4 photos plein écran) -->
+    <div class="h-group">
+      <div class="h-card">
+        <img src="images/tempsfort-1.jpeg" alt="Reconnaissance" loading="lazy">
+        <div class="h-ov"><span>Reconnaissance</span><h3>Prix d'Excellence BTP</h3></div>
+      </div>
+      <div class="h-card">
+        <img src="images/tempsfort-2.jpg" alt="Partenariat" loading="lazy">
+        <div class="h-ov"><span>Partenariat</span><h3>Signature officielle</h3></div>
+      </div>
+      <div class="h-card">
+        <img src="images/tempsfort-3.jpg" alt="Personnalité" loading="lazy">
+        <div class="h-ov"><span>Événement</span><h3>Rencontre avec les autorités</h3></div>
+      </div>
+      <div class="h-card">
+        <img src="images/tempsfort-4.jpg" alt="Chantier" loading="lazy">
+        <div class="h-ov"><span>Réalisation</span><h3>Livraison d'un projet</h3></div>
+      </div>
+    </div>
+
+    <!-- GROUPE 2 (4 autres photos plein écran) -->
+    <div class="h-group">
+      <div class="h-card">
+        <img src="images/tempsfort-5.jpg" alt="Équipe" loading="lazy">
+        <div class="h-ov"><span>Équipe</span><h3>Nos experts sur le terrain</h3></div>
+      </div>
+      <div class="h-card">
+        <img src="images/tempsfort-6.jpg" alt="Villa" loading="lazy">
+        <div class="h-ov"><span>Adebissi</span><h3>Remise des clés</h3></div>
+      </div>
+      <div class="h-card">
+        <img src="images/tempsfort-7.jpg" alt="Conférence" loading="lazy">
+        <div class="h-ov"><span>Conférence</span><h3>Présentation du projet</h3></div>
+      </div>
+      <div class="h-card">
+        <img src="images/tempsfort-8.jpeg" alt="Innovation" loading="lazy">
+        <div class="h-ov"><span>Innovation</span><h3>Nouvelles technologies</h3></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 2. CATALOGUES : carrousel photos, un clic ouvre le catalogue -->
+<section class="cats" id="catalogues"><div class="wrap">
+  <div class="head">
+    <div><h2>Nos catalogues</h2><p class="lead">Touchez une photo pour feuilleter le catalogue complet et le télécharger.</p></div>
+    <div style="display:flex;gap:8px"><button class="arr" id="cprev" aria-label="Précédent">‹</button><button class="arr" id="cnext" aria-label="Suivant">›</button></div>
+  </div>
+  <div class="track" id="track"></div>
+</div></section>
+
+<!-- 3. CHIFFRES : remplacez XX par un nombre, ex. data-count="12" et 12 -->
+<div class="stats"><div class="wrap">
+  <div class="stat"><b data-count="">10</b><span>ans d’expérience</span></div>
+  <div class="stat"><b data-count="">157</b><span>projets livrés</span></div>
+  <div class="stat"><b data-count="">350.000</b><span>m² construits</span></div>
+  <div class="stat"><b data-count="">712</b><span>emplois créés</span></div>
+</div></div>
+
+<!-- 4. PROJET PHARE -->
+<section class="flag"><div class="wrap box">
+  <div class="im">
+    <a href="https://adebissi-dream-house.mymaketou.shop/fr/products/adebissi-dream-house-choisissez-votre-villa-et-souscrivez-a-250-000-fcfa" target="_blank" rel="noopener"> 
+    <img src="images/dream2.jpg" alt="ADEBISSI DREAM HOUSE" style="width: 100%; height: auto; display: block;">
+    </a>
+</div>
+  <div>
+    <h2>Devenez propriétaire de votre villa au Togo</h2>
+    <p class="lead">ADEBISSI DREAM HOUSE : des villas de 25 à 300 millions FCFA, suivies à distance depuis n’importe où dans le monde.</p>
+ <a href="https://adebissi-dream-house.mymaketou.shop/fr/products/adebissi-dream-house-choisissez-votre-villa-et-souscrivez-a-250-000-fcfa" target="_blank" rel="noopener" style="text-decoration: none; display: inline-block;">
+    <div class="price">Souscrivez dès <b>250 000 FCFA</b></div>
+</a>
+    <ul class="steps">
+      <li>Souscrivez et réservez votre villa</li>
+      <li>Suivez le chantier en photos et en vidéos</li>
+      <li>Recevez vos clés, avec un contrat clair</li>
+    </ul>
+    <a class="btn" href="#contact">Je veux en savoir plus</a>
+  </div>
+</div></section>
+
+<!-- 5. CONFIANCE -->
+<section style="padding-top:0"><div class="wrap">
+  <h2>Pourquoi nous faire confiance</h2>
+  <div class="trust">
+    <div><h3>Une entreprise légalement établie</h3><p>Immatriculée, NIF 1000168327.</p></div>
+    <div><h3>Un suivi de chantier transparent</h3><p>Des rapports réguliers, photos et vidéos à l’appui.</p></div>
+    <div><h3>Une équipe locale expérimentée</h3><p>Ingénieurs, chefs de chantier et ouvriers qui connaissent le terrain.</p></div>
+    <div><h3>Un accompagnement de A à Z</h3><p>De la conception à la livraison, un seul interlocuteur.</p></div>
+  </div>
+</div></section>
+
+<!-- 6. PARTENARIATS -->
+<section class="part"><div class="wrap">
+  <h2>Construisons ensemble</h2>
+  <p class="lead">Nous cherchons des partenaires qui veulent se développer sur un marché où la demande en logements et en infrastructures est forte.</p>
+  <div class="pg">
+    <div><h3>Investisseurs</h3><p>Cofinancez de nouveaux programmes immobiliers.</p></div>
+    <div><h3>Partenaires techniques</h3><p>Matériaux, équipements et savoir-faire.</p></div>
+    <div><h3>Coentreprises</h3><p>Projets entre la France et l’Afrique.</p></div>
+  </div>
+  <a class="btn" href="#contact">Proposer un partenariat</a>
+</div></section>
+
+<!-- 7. CONTACT -->
+<section id="contact"><div class="wrap">
+  <h2>Parlons-en, 15 minutes suffisent</h2>
+  <p style="display:flex;gap:12px;flex-wrap:wrap;margin:18px 0">
+    <a class="btn" style="background:#1fa855;border-color:#1fa855;color:#fff" href="https://wa.me/22879046464">WhatsApp</a>
+    <a class="btn" style="background:var(--c1);border-color:var(--c1);color:#fff" href="#catalogues">Voir les catalogues</a>
+  </p>
+  <!-- Formulaire de contact amélioré -->
+<form action="https://api.web3forms.com/submit" method="POST" style="background: #fff; padding: 24px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    
+    <!-- TA CLÉ WEB3FORMS ICI -->
+    <input type="hidden" name="access_key" value="9dec6f40-9fba-4dbb-a6ec-6838f351492e">
+    
+    <!-- Anti-spam -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+    <div style="display: grid; gap: 16px;">
+        <input type="text" name="Nom" placeholder="Nom complet" required aria-label="Nom complet" style="padding: 14px; border-radius: 8px; border: 1px solid #ccc; width: 100%;">
+        
+        <!-- On ajoute le téléphone / WhatsApp, indispensable pour vous -->
+        <input type="tel" name="WhatsApp" placeholder="Numéro WhatsApp (ex: +228...)" required aria-label="Numéro WhatsApp" style="padding: 14px; border-radius: 8px; border: 1px solid #ccc; width: 100%;">
+        
+        <input type="email" name="Email" placeholder="Adresse Email (Optionnel)" aria-label="Email" style="padding: 14px; border-radius: 8px; border: 1px solid #ccc; width: 100%;">
+        
+        <!-- On qualifie la provenance -->
+        <select name="Localisation" required aria-label="Votre localisation" style="padding: 14px; border-radius: 8px; border: 1px solid #ccc; width: 100%; background: #fff;">
+            <option value="">Où résidez-vous ?</option>
+            <option value="Togo">Au Togo</option>
+            <option value="Afrique">En Afrique (hors Togo)</option>
+            <option value="Diaspora">Diaspora (Europe, USA, Canada...)</option>
+        </select>
+
+        <!-- On qualifie le besoin -->
+        <select name="Interet" required aria-label="Votre intérêt" style="padding: 14px; border-radius: 8px; border: 1px solid #ccc; width: 100%; background: #fff;">
+            <option value="">Votre projet</option>
+            <option value="Villa">Souscrire à une villa (Adebissi)</option>
+            <option value="Ascenseur">Installation d'ascenseur / École</option>
+            <option value="Investir">Investir / Partenariat</option>
+            <option value="Autre">Autre demande</option>
+        </select>
+
+        <textarea name="Message" placeholder="Votre message (Optionnel)" rows="3" style="padding: 14px; border-radius: 8px; border: 1px solid #ccc; width: 100%; font-family: inherit;"></textarea>
+
+        <button class="btn" type="submit" style="width: 100%; border-radius: 8px; padding: 16px;">Envoyer ma demande</button>
+    </div>
+</form>
+  <p class="ci">(00228) 79 04 64 64 · 91 31 69 43 · 98 76 73 11<br>afriqueplusbtptogo@gmail.com<br>Glinkomé, carrefour de l’Amitié, Lomé, Togo</p>
+</div></section>
+</main>
+<footer>© AFRIQUE PLUS BTP · All Right Reserved · International Building Services. Powered By Fadel AGLI Software developer</footer>
+<nav class="bar" aria-label="Contact rapide"><a class="wa" href="https://wa.me/22879046464">WhatsApp</a><a class="rdv" href="#contact">Nous écrire</a></nav>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

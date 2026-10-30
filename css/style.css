@@ -1,0 +1,421 @@
+  /* ============ VOS COULEURS ET VOTRE IDENTITE : modifiez ici ============ */
+:root{
+  --c1:#000000;      /* vert profond (fonds sombres) */
+  --c2:#000000;      /* vert secondaire */
+  --accent:#EA5E2E;  /* or (boutons, chiffres) */
+  --bg:#f4f6f2;     /* fond clair */
+  --ink:#1c303e;     /* texte */
+  --muted:#5b6b64;
+  --font-d:'Fraunces',Georgia,serif;
+  --font-b:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+/* ====================================================================== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font:17px/1.6 var(--font-b);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;padding-bottom:70px}
+h1,h2,h3{font-family:var(--font-d);line-height:1.08;letter-spacing:-.015em;font-weight:600}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+section{padding:clamp(56px,9vw,110px) 0}
+h2{font-size:clamp(30px,5.5vw,56px);margin-bottom:14px}
+.lead{color:var(--muted);max-width:58ch;margin-bottom:30px}
+.btn{display:inline-block;padding:15px 26px;border-radius:999px;font-weight:700;text-decoration:none;background:var(--accent);color:var(--c1);border:2px solid var(--accent);transition:transform .2s,box-shadow .2s;cursor:pointer;font:700 16px var(--font-b)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px #e6a82a55}
+.btn.ghost{background:transparent;color:#fff;border-color:#ffffff88}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+/* ---------- HERO : carrousel video 3D ---------- */
+ .hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh; /* Utilise svh pour prendre en compte la barre d'adresse mobile */
+  min-height: 560px;
+  padding: 0;
+  overflow: hidden; /* TRÈS IMPORTANT : coupe tout ce qui dépasse */
+  color: #fff;
+  background: radial-gradient(120% 90% at 50% 0%,var(--c2),var(--c1) 58%,#050f0b);
+}
+.top{position:absolute;inset:0 0 auto;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 22px 14px}
+ /* --- LOGOS HAUT DE PAGE (Format Rond & XL) --- */
+.logos {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espace entre les deux logos */
+    text-decoration: none;
+    /* On enlève le fond rectangulaire */
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.logos img {
+    width: 90px; /* Taille du cercle (Ajuste à 100px ou 120px si tu veux encore plus grand) */
+    height: 90px;
+    border-radius: 50%; /* Rend l'image complètement ronde */
+    object-fit: contain; /* L'image entière s'adapte dans le cercle sans être coupée */
+    background-color: #ffffff; /* Fond blanc pour bien voir les logos sombres */
+    padding: 12px; /* Espace entre le logo et le bord du cercle */
+    
+    /* Effet 3D et ombre */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* On enlève l'ancien filtre qui pouvait rendre le texte flou */
+    filter: none; 
+    mix-blend-mode: normal;
+}
+
+/* Effet de zoom au survol */
+.logos img:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Pour les mobiles : on réduit un peu pour que ça rentre */
+@media(max-width: 620px) {
+    .logos img {
+        width: 65px;
+        height: 65px;
+        padding: 8px;
+        gap: 10px;
+    }
+}
+.stage{position:absolute;inset:0;perspective:1500px;perspective-origin:50% 42%;touch-action:pan-y;cursor:grab}
+.stage:active{cursor:grabbing}
+ /* ---------- HERO : Vidéo 3D Plein Écran ---------- */
+.slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw; /* Prend toute la largeur de l'écran */
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    height: 100svh;
+    border-radius: 0; /* Bords droits pour un effet immersif */
+    overflow: hidden;
+    background: #000;
+    box-shadow: none; /* Plus d'ombre car elle prend tout l'écran */
+    transition: transform 1s cubic-bezier(.2,.8,.2,1), opacity .7s;
+    will-change: transform;
+    transform-style: preserve-3d;
+}
+
+.slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* C'EST LA CLÉ : remplit l'écran en haute définition sans déformer */
+}
+
+/* Voile sombre pour que le texte reste lisible sur la vidéo */
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
+    transition: opacity .6s;
+}
+
+.slide:not(.on)::after {
+    background: rgba(0,0,0,0.6); /* Assombrit les vidéos sur les côtés */
+}
+.cap{position:absolute;left:24px;bottom:18px;z-index:2;opacity:0;transition:opacity .6s .3s}
+.slide.on .cap{opacity:1}
+.cap b{display:block;font:600 clamp(18px,3vw,28px) var(--font-d)}
+.cap span{font-size:14px;color:#dbe8e0}
+ .hero-bottom {
+    position: absolute;
+    left: 0; right: 0; bottom: 0; z-index: 30;
+    padding: 0 22px calc(22px + env(safe-area-inset-bottom,0px));
+    background: linear-gradient(0deg, #050f0bf0 30%, transparent);
+    pointer-events: none;
+}
+.hero-bottom .row{width:min(1120px,100%);margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+.hero h1{font-size:clamp(30px,6.4vw,72px);max-width:14ch}
+.hero-bottom .btn{pointer-events:auto;white-space:nowrap}
+.ctrl{position:absolute;z-index:31;right:22px;top:50%;display:flex;flex-direction:column;gap:10px}
+.ctrl button,.arr{width:46px;height:46px;border-radius:50%;border:1px solid #ffffff66;background:#0b2e2399;color:#fff;font-size:20px;cursor:pointer;backdrop-filter:blur(6px)}
+.dots{position:absolute;z-index:31;left:22px;top:50%;display:flex;flex-direction:column;gap:10px}
+.dots i{width:9px;height:9px;border-radius:50%;background:#ffffff55;cursor:pointer}
+.dots i.on{background:var(--accent);height:26px;border-radius:6px}
+.scroll{position:absolute;z-index:31;left:50%;bottom:8px;translate:-50% 0;font-size:12px;opacity:.7}
+
+/* ---------- Catalogues ---------- */
+.cats{background:var(--bg)}
+.cats .head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.cats .arr{background:var(--c1);position:static;flex:none}
+.track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px 0 24px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.card{position:relative;flex:0 0 min(78vw,370px);aspect-ratio:3/4;border-radius:22px;overflow:hidden;scroll-snap-align:start;background:linear-gradient(135deg,var(--c2),var(--c1));text-decoration:none;color:#fff;transition:transform .35s,box-shadow .35s;box-shadow:0 14px 40px #0b2e2330;transform-style:preserve-3d}
+.card:hover{box-shadow:0 30px 60px #0b2e2355}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s,transform 6s}
+.card img.on{opacity:1;transform:scale(1.07)}
+.card .ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:22px;background:linear-gradient(0deg,#050f0bf2 8%,transparent 60%)}
+.card small{color:var(--accent);font-weight:700}
+.card h3{font-size:26px}
+.card .go{margin-top:8px;font-weight:700;border-top:1px solid #ffffff44;padding-top:12px}
+
+/* ---------- Chiffres ---------- */
+.stats{background:var(--c1);color:#fff;padding:56px 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.stat b{display:block;font:600 clamp(44px,10vw,84px)/1 var(--font-d);color:var(--accent)}
+.stat span{color:#cfe0d6}
+
+/* ---------- Projet phare ---------- */
+.flag .box{display:grid;gap:34px;align-items:center}
+ .flag .im {
+    border-radius: 26px;
+    overflow: hidden; /* important pour couper les bords de l'image */
+    box-shadow: 0 30px 70px #0b2e2338;
+}
+.price{display:inline-block;background:var(--c1);color:#fff;border-radius:16px;padding:14px 20px;margin:4px 0 20px}
+.price b{font:600 32px var(--font-d);color:var(--accent)}
+.steps{list-style:none;display:grid;gap:10px;margin-bottom:26px}
+.steps li{padding-left:30px;position:relative}
+.steps li::before{content:"✓";position:absolute;left:0;color:var(--c2);font-weight:800}
+
+/* ---------- Confiance & partenariats ---------- */
+.trust{display:grid;gap:16px;margin-top:26px}
+.trust div{background:#fff;border-radius:18px;padding:22px;border-left:5px solid var(--accent)}
+.trust h3{font-size:21px;margin-bottom:4px}
+.part{background:var(--c1);color:#fff}
+.part .lead{color:#cfe0d6}
+.pg{display:grid;gap:16px;margin-bottom:28px}
+.pg div{border:1px solid #ffffff3d;border-radius:20px;padding:22px}
+.pg h3{font-size:23px;color:var(--accent);margin-bottom:6px}
+
+/* ---------- Contact ---------- */
+form{display:grid;gap:12px;max-width:480px;margin:22px 0}
+input,select{font:inherit;padding:14px;border-radius:12px;border:1.5px solid #b8c6be;background:#fff;width:100%}
+.ci{color:var(--muted);font-size:15px}
+footer{padding:26px 20px;text-align:center;font-size:14px;color:var(--muted)}
+.bar{position:fixed;inset:auto 0 0;z-index:50;display:flex;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:#fffffff2;box-shadow:0 -4px 18px #0000001f}
+.bar a{flex:1;text-align:center;padding:13px 8px;border-radius:12px;font-weight:700;text-decoration:none}
+.bar .wa{background:#1fa855;color:#fff}.bar .rdv{background:var(--c1);color:#fff}
+
+/* ---------- Page catalogue ---------- */
+.viewer{height:100vh;height:100dvh;display:flex;flex-direction:column;background:#101a16;padding:0}
+.vbar{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--c1);color:#fff;flex-wrap:wrap}
+.vbar h1{font-size:20px;flex:1;min-width:140px}
+.vbar .btn{padding:10px 18px;font-size:15px}
+.viewer iframe{flex:1;border:0;width:100%;background:#fff}
+.viewer p{color:#fff;padding:20px}
+
+@media(min-width:800px){
+  body{padding-bottom:0}.bar{display:none}
+  .stats .wrap{grid-template-columns:repeat(4,1fr)}
+  .flag .box{grid-template-columns:1fr 1fr;gap:70px}
+  .trust{grid-template-columns:repeat(2,1fr)}.pg{grid-template-columns:repeat(3,1fr)}
+}
+ @media(max-width: 620px) {
+  /* On cache le bouton du menu haut pour gagner de la place */
+  .top .btn {
+    display: none;
+  }
+
+  /* On remonte les boutons de contrôle et les points tout en haut */
+  .dots, .ctrl {
+    top: 90px; /* Juste sous le logo */
+    bottom: auto; /* On annule le bottom qui les collait au texte */
+    flex-direction: row;
+  }
+
+  .ctrl {
+    right: 14px;
+  }
+
+  .dots {
+    left: 14px;
+    align-items: center;
+  }
+
+  .dots i.on {
+    height: 9px;
+    width: 26px;
+  }
+
+  /* On s'assure que le texte prend bien toute la largeur */
+  .hero-bottom .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 20px;
+  }
+
+  /* On ajuste la taille du titre pour qu'il rentre bien */
+  .hero h1 {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+
+/* =========================================
+   SECTION GALERIE TEMPS FORTS
+   ========================================= */
+.highlights {
+  position: relative;
+  z-index: 20;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh; /* Hauteur exacte sur mobile */
+  background: #050f0b; /* Fond noir profond */
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+/* Bandeau du haut (Titre + Flèches) */
+.highlights-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  padding: 20px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(5,15,11,0.95) 0%, rgba(5,15,11,0) 100%);
+  pointer-events: none; 
+}
+
+.highlights-header > * {
+  pointer-events: auto;
+}
+
+.highlights-header h2 {
+  color: #fff;
+  font-size: clamp(24px, 4vw, 40px);
+  margin-bottom: 4px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.highlights-header .lead {
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 0;
+  font-size: 14px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+}
+
+/* Conteneur du carrousel horizontal */
+.h-track {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.h-track::-webkit-scrollbar { display: none; }
+
+/* Grille 2x2 pour les 4 photos */
+.h-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; /* Force 50% de hauteur pour chaque ligne */
+  min-width: 100vw;
+  height: 100%;
+  scroll-snap-align: start;
+  gap: 2px; /* Fine bordure entre les images */
+}
+
+/* Carte individuelle */
+.h-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #111; /* Fond noir au cas où l'image ne charge pas */
+  overflow: hidden;
+}
+
+/* Overlay (Dégradé et texte au bas de l'image) */
+.h-ov {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 60%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px;
+  color: #fff;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.h-ov span {
+  color: var(--accent); /* Ta couleur orange */
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.h-ov h3 {
+  font-family: var(--font-d);
+  font-size: clamp(14px, 2vw, 22px);
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+ /* =========================================
+   CORRECTIONS MOBILE (Téléphones)
+   ========================================= */
+@media(max-width: 768px) {
+  /* On transforme la section en colonne pour séparer le haut et les photos */
+  .highlights {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Le bandeau reprend sa place normale (plus de superposition) */
+  .highlights-header {
+    position: relative; /* Annule le position absolute */
+    top: auto;
+    left: auto;
+    right: auto;
+    background: #050f0b; /* Fond noir uni pour être bien séparé */
+    padding: 15px;
+    flex-direction: row; /* Titre à gauche, flèches à droite */
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .highlights-header h2 {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  
+  /* On cache le sous-titre sur mobile pour gagner de la place */
+  .highlights-header .lead {
+    display: none; 
+  }
+
+  /* Les flèches deviennent plus petites et bien visibles */
+  .highlights .arr {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+  }
+
+  /* Le carrousel de photos prend TOUT le reste de l'écran */
+  .h-track {
+    flex: 1; /* Prend l'espace restant */
+    height: auto;
+  }
+
+  .h-ov {
+    padding: 10px;
+  }
+  
+  .h-ov h3 {
+    font-size: 13px;
+  }
+  
+  .h-ov span {
+    font-size: 8px;
+  }
+}

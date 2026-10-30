@@ -1,0 +1,5 @@
+AFRIQUE PLUS BTP - site QR code
+1) Mettez vos fichiers : videos/video-1.mp4..., images/logo-1.png, logo-2.png, hero/cat-*.jpg, dream.jpg, catalogues/*.pdf
+2) Modifiez js/config.js pour ajouter/retirer vidéos et catalogues.
+3) Modifiez les couleurs en haut de css/style.css.
+4) Envoyez TOUT le contenu de ce dossier dans public_html (ou le dossier du sous-domaine).

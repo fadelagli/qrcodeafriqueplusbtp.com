@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogue | AFRIQUE PLUS BTP</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="viewer" style="padding:0">
+<div class="vbar">
+  <a href="index.html#catalogues" class="btn ghost">← Retour</a>
+  <h1 id="t">Catalogue</h1>
+  <a class="btn" id="dl" href="#" download>Télécharger le PDF</a>
+</div>
+<iframe id="pdf" title="Catalogue"></iframe>
+<p id="msg" hidden>Catalogue introuvable. <a href="index.html#catalogues" style="color:var(--accent)">Retour au site</a></p>
+<script>
+var p=new URLSearchParams(location.search),f=p.get('f')||'',t=p.get('t')||'Catalogue';
+document.getElementById('t').textContent=t;document.title=t+' | AFRIQUE PLUS BTP';
+if(/^catalogues\/[\w\-. ]+\.pdf$/i.test(f)){
+  var d=document.getElementById('dl');d.href=f;d.setAttribute('download',f.split('/').pop());
+  document.getElementById('pdf').src=f+'#view=FitH';
+}else{document.getElementById('pdf').hidden=true;document.getElementById('msg').hidden=false}
+</script>
+</body>
+</html>
