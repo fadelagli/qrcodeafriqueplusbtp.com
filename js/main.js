@@ -93,4 +93,79 @@ if(hTrack && hPrev && hNext) {
         hTrack.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
     });
 }
+
+/* =========================================
+   LOGIQUE DU PRELOADER (CHARGEMENT)
+   ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const preloader = document.getElementById('preloader');
+  const loaderBar = document.getElementById('loader-bar');
+  const loaderPercentage = document.getElementById('loader-percentage');
+  
+  let progress = 0;
+  
+  // On simule un temps de chargement entre 2 et 3 secondes
+  const interval = setInterval(() => {
+    // On ajoute un nombre aléatoire entre 1 et 5 pour un effet naturel
+    progress += Math.random() * 5 + 1; 
+    
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      
+      // Une fois à 100%, on attend une demi-seconde pour la classe "Waouh"
+      setTimeout(() => {
+        preloader.classList.add('preloader-hidden');
+      }, 500);
+    }
+    
+    // On met à jour la barre et le texte
+    loaderBar.style.width = `${progress}%`;
+    loaderPercentage.innerText = `${Math.floor(progress)}%`;
+    
+  }, 50); // Vitesse de rafraîchissement (toutes les 50 millisecondes)
+});
+
+/* =========================================
+   ASCENSEUR (BOUTON RETOUR EN HAUT)
+   ========================================= */
+const backToTopBtn = document.getElementById('back-to-top');
+const progressCircle = document.querySelector('.progress-ring__circle');
+const scrollPercentText = document.getElementById('scroll-percent');
+
+// Circonférence du cercle (2 * PI * rayon)
+const circleRadius = 26;
+const circumference = 2 * Math.PI * circleRadius;
+
+if (backToTopBtn && progressCircle && scrollPercentText) {
+  
+  window.addEventListener('scroll', () => {
+    // 1. Calcul du pourcentage de scroll
+    const scrollTop = window.scrollY; // Position actuelle
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight; // Hauteur totale scrollable
+    const scrollPercent = (scrollTop / docHeight) * 100;
+
+    // 2. Affichage / Masquage du bouton (après 300px de scroll)
+    if (scrollTop > 300) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+
+    // 3. Mise à jour du cercle SVG
+    const offset = circumference - (scrollPercent / 100) * circumference;
+    progressCircle.style.strokeDashoffset = offset;
+
+    // 4. Mise à jour du texte (ex: "45%")
+    scrollPercentText.innerText = Math.round(scrollPercent) + '%';
+  });
+
+  // 5. Action au clic : Remonter tout en haut
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
 })();

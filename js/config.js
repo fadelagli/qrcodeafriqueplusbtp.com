@@ -15,6 +15,8 @@ window.SITE_CONFIG = {
     { src: "videos/video-2.mp4", webm: "", poster: "images/poster-2.jpg",
       title: "ADEBISSI DREAM HOUSE", caption: "Villas pour le Togo et la diaspora" },
     { src: "videos/video-3.mp4", webm: "", poster: "images/poster-3.jpg",
+      title: "NOS PROJETS", caption: "Découvrez notre expertise" },
+    { src: "videos/video-4.mp4", webm: "", poster: "images/poster-4.jpg",
       title: "NOS PROJETS", caption: "Découvrez notre expertise" }
   ],
 
@@ -31,7 +33,7 @@ window.SITE_CONFIG = {
       cover: "images/cat-2.jpg", photos: ["images/cat-2b.jpg","images/cat-2c.jpg"],
       pdf: "catalogues/catalogue-btp.pdf" },
     { title: "Réalisations", tag: "Portfolio",
-      cover: "images/cat-3.png", photos: ["images/cat-3b.jpg"],
+      cover: "images/cat-3.jpg", photos: ["images/cat-3b.jpg"],
       pdf: "catalogues/catalogue-realisations.pdf" }
   ]
 };

@@ -1,11 +1,11 @@
   /* ============ VOS COULEURS ET VOTRE IDENTITE : modifiez ici ============ */
 :root{
-  --c1:#000000;      /* vert profond (fonds sombres) */
-  --c2:#000000;      /* vert secondaire */
+  --c1:#1c303e;      /* NOIR (fonds sombres) */
+  --c2:#1C303e;      /* NOIR secondaire */
   --accent:#EA5E2E;  /* or (boutons, chiffres) */
   --bg:#f4f6f2;     /* fond clair */
   --ink:#1c303e;     /* texte */
-  --muted:#5b6b64;
+  --muted:#1c303e;
   --font-d:'Fraunces',Georgia,serif;
   --font-b:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
 }
@@ -25,6 +25,189 @@ h2{font-size:clamp(30px,5.5vw,56px);margin-bottom:14px}
 .btn.ghost{background:transparent;color:#fff;border-color:#ffffff88}
 a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
+/* =========================================
+   ÉCRAN DE CHARGEMENT (PRELOADER)
+   ========================================= */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999; /* Toujours au-dessus de tout */
+  background: #050f0b; /* Ton fond sombre */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Classe ajoutée par le JS pour faire disparaître l'écran */
+#preloader.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.loader-logo-img {
+  height: 70px;
+  margin-bottom: 15px;
+  /* Animation de pulsation subtile */
+  animation: pulseLogo 2s infinite ease-in-out;
+}
+
+@keyframes pulseLogo {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.loader-text {
+  color: #fff;
+  font-family: var(--font-b);
+  font-weight: 800;
+  letter-spacing: 3px;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* Conteneur de la barre */
+.loader-bar-container {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+/* La barre qui se remplit */
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent); /* Ta couleur orange */
+  border-radius: 99px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Le pourcentage */
+.loader-percentage {
+  color: #fff;
+  font-family: var(--font-d); /* La police Fraunces pour le côté chic */
+  font-size: 32px;
+  font-weight: 600;
+}
+
+/* =========================================
+   BOUTON RETOUR EN HAUT (ASCENSEUR)
+   ========================================= */
+#back-to-top {
+  position: fixed;
+  /* Positionné en bas à droite, au-dessus de la barre mobile */
+  bottom: 90px; 
+  right: 20px;
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(11, 46, 35, 0.85); /* Fond vert sombre semi-transparent */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Caché par défaut, apparaît au scroll */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Classe ajoutée par le JS quand on descend */
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(11, 46, 35, 0.95);
+  box-shadow: 0 15px 40px rgba(234, 94, 46, 0.3); /* Ombre orange au survol */
+}
+
+/* Le cercle SVG */
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Commence en haut */
+}
+
+/* Le fond du cercle */
+.progress-ring__circle-bg {
+  stroke: rgba(255,255,255,0.1);
+}
+
+/* La barre de progression orange */
+.progress-ring__circle {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  /* Circonférence = 2 * PI * rayon (2 * 3.14159 * 26 = 163.36) */
+  stroke-dasharray: 163.36; 
+  stroke-dashoffset: 163.36; /* Caché au départ */
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+/* Le contenu à l'intérieur (Flèche + Pourcentage) */
+.back-to-top-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  z-index: 2;
+}
+
+.back-to-top-content .arrow {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 2px;
+  transition: transform 0.3s ease;
+}
+
+#back-to-top:hover .arrow {
+  transform: translateY(-2px); /* La flèche monte un peu au survol */
+}
+
+.back-to-top-content .percent {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Ajustement sur ordinateur (remonter un peu car pas de barre mobile) */
+@media(min-width: 800px) {
+  #back-to-top {
+    bottom: 30px;
+    right: 30px;
+  }
+}
+
 /* ---------- HERO : carrousel video 3D ---------- */
  .hero {
   position: relative;
@@ -34,7 +217,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
   padding: 0;
   overflow: hidden; /* TRÈS IMPORTANT : coupe tout ce qui dépasse */
   color: #fff;
-  background: radial-gradient(120% 90% at 50% 0%,var(--c2),var(--c1) 58%,#050f0b);
+  background: radial-gradient(120% 90% at 50% 0%,var(--c2),var(--c1) 58%,#1c303e);
 }
 .top{position:absolute;inset:0 0 auto;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 22px 14px}
  /* --- LOGOS HAUT DE PAGE (Format Rond & XL) --- */
@@ -59,7 +242,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-off
     padding: 12px; /* Espace entre le logo et le bord du cercle */
     
     /* Effet 3D et ombre */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px #1c303e, inset 0 0 0 2px #1c303e;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
     /* On enlève l'ancien filtre qui pouvait rendre le texte flou */
@@ -260,7 +443,7 @@ footer{padding:26px 20px;text-align:center;font-size:14px;color:var(--muted)}
   width: 100vw;
   height: 100vh;
   height: 100svh; /* Hauteur exacte sur mobile */
-  background: #050f0b; /* Fond noir profond */
+  background: #1c303e; /* Fond noir profond */
   overflow: hidden;
   padding: 0;
   margin: 0;

@@ -11,6 +11,38 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+  <!-- ÉCRAN DE CHARGEMENT (PRELOADER) -->
+<div id="preloader">
+  <div class="loader-content">
+    <!-- Ton logo ou ton texte -->
+    <img src="images/2.svg" alt="Afrique Plus BTP" class="loader-logo-img" onerror="this.style.display='none'">
+    <div class="loader-text">AFRIQUE PLUS BTP <br> <span>International Building Services</span></div>
+    
+    <!-- La barre de progression -->
+    <div class="loader-bar-container">
+      <div class="loader-bar" id="loader-bar"></div>
+    </div>
+    
+    <!-- Le pourcentage -->
+    <div class="loader-percentage" id="loader-percentage">0%</div>
+  </div>
+</div>
+
+<!-- BOUTON RETOUR EN HAUT (ASCENSEUR) -->
+<button id="back-to-top" aria-label="Retour en haut">
+  <svg class="progress-ring" width="60" height="60">
+    <!-- Cercle de fond (gris transparent) -->
+    <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.1)" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+    <!-- Cercle de progression (Orange) -->
+    <circle class="progress-ring__circle" stroke="var(--accent)" stroke-width="4" fill="transparent" r="26" cx="30" cy="30"/>
+  </svg>
+  <div class="back-to-top-content">
+    <span class="arrow">↑</span>
+    <span class="percent" id="scroll-percent">0%</span>
+  </div>
+</button>
+
 <main>
 <!-- 1. HERO : carrousel vidéo 3D plein écran -->
 <section class="hero" id="hero">
@@ -57,7 +89,7 @@
     <div class="h-group">
       <div class="h-card">
         <img src="images/tempsfort-1.jpeg" alt="Reconnaissance" loading="lazy">
-        <div class="h-ov"><span>Reconnaissance</span><h3>Prix d'Excellence BTP</h3></div>
+        <div class="h-ov"><span>Attestation </span><h3>Attestion de bonne fin</h3></div>
       </div>
       <div class="h-card">
         <img src="images/tempsfort-2.jpg" alt="Partenariat" loading="lazy">
@@ -68,7 +100,7 @@
         <div class="h-ov"><span>Événement</span><h3>Rencontre avec les autorités</h3></div>
       </div>
       <div class="h-card">
-        <img src="images/tempsfort-4.jpg" alt="Chantier" loading="lazy">
+        <img src="images/tempsfort-8.jpeg" alt="Chantier" loading="lazy">
         <div class="h-ov"><span>Réalisation</span><h3>Livraison d'un projet</h3></div>
       </div>
     </div>
